@@ -1,3 +1,12 @@
+/**
+ * このパッケージのほとんどの部分が
+ * http://www.derschmale.com/2009/04/23/return-of-the-ripples-shallow-water-simulation-with-pixel-bender/
+ * を参考に書かれています。
+ * パフォーマンスの向上のために、DisplacementMapFilterで行われていた処理をpixelbenderでShaderJobで行うように変更していますが、
+ * DisplacementMapFilterの代わりとなるpixelbenderファイルも
+ * http://www.boostworthy.com/blog/?p=245
+ * こちらの記事を参考にしています。
+ */
 package jp.utweb.shaders
 {
 	import com.derschmale.utils.PBImageMapper;
