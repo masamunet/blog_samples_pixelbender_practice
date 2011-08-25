@@ -51,8 +51,9 @@ package
 		{
 			_camera = Camera.getCamera();
 			if(!(!_camera)){
-				_camera.addEventListener(StatusEvent.STATUS, _onCameraStatusChangeHandler);
 				_camera.setMode(_CAMERA_WIDTH, _CAMERA_HEIGHT, _camera.fps);
+				_camera.addEventListener(StatusEvent.STATUS, _onCameraStatusChangeHandler);
+				
 				_video = new Video(_camera.width, _camera.height);
 				_video.attachCamera(_camera);
 				addCommand(
@@ -78,18 +79,6 @@ package
 				}
 			);
 		}
-
-
-		public override function get height():Number
-		{
-			return _CAMERA_HEIGHT;
-		}
-
-		public override function get width():Number
-		{
-			return _CAMERA_WIDTH;
-		}
-
 
 	}
 }
