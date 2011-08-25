@@ -30,15 +30,20 @@ package
 					_rippler.relaxation = 0.15;
 					_rippler.relaxationSteps = 2;
 					_rippler.filterTarget = _innerCamera;
-					_rippler.drawStart();
 					stage.addEventListener(MouseEvent.MOUSE_MOVE, _onMouseMoveHadler);
 					stage.addEventListener(MouseEvent.MOUSE_UP, _onMouseUpHandler);
+					_innerCamera.addEventListener(InnerCamera.CAMERA_READY, _onCameraReadyHandler);
 					insertCommand(
 						new AddChild(target, _rippler)
 					);
 				},
 				_setPosition
 			);
+		}
+		
+		private function _onCameraReadyHandler(e:Event):void
+		{
+			_rippler.drawStart();
 		}
 		
 		private function _onMouseUpHandler(e:MouseEvent):void
@@ -102,6 +107,7 @@ package
 					stage.removeEventListener(Event.RESIZE, _onStageResizeHandler);
 					_rippler.drawStop();
 					_rippler = null;
+					_innerCamera.removeEventListener(InnerCamera.CAMERA_READY, _onCameraReadyHandler);
 					_innerCamera = null;
 				}
 			);

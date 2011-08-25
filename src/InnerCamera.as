@@ -1,6 +1,7 @@
 package
 {
 	import flash.display.Loader;
+	import flash.events.Event;
 	import flash.events.StatusEvent;
 	import flash.media.Camera;
 	import flash.media.Video;
@@ -15,6 +16,7 @@ package
 	
 	public class InnerCamera extends CastSprite
 	{
+		public static const CAMERA_READY:String = "innercamera_ready";
 		private static const _CAMERA_WIDTH:Number = 600;
 		private static const _CAMERA_HEIGHT:Number = 400;
 		private var _video:Video;
@@ -35,7 +37,10 @@ package
 					_loader.width = _CAMERA_WIDTH;
 					_loader.height = _CAMERA_HEIGHT;
 				},
-				new AddChild(this, _loader)
+				new AddChild(this, _loader),
+				function():void{
+					dispatchEvent(new Event(CAMERA_READY));
+				}
 			);
 			return list;
 		}
@@ -44,6 +49,8 @@ package
 		{
 			if(_camera.muted){
 				_loadImage().execute();
+			}else{
+				dispatchEvent(new Event(CAMERA_READY));
 			}
 		}
 
